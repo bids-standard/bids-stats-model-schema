@@ -48,12 +48,10 @@ class App extends Component {
     return (
       <div className="App">
           <div>
-            <marquee>
             <textarea
               value={this.state.value}
               onChange={this.handleChange}
             />
-            </marquee>
             <Valid valid={this.state.valid}/>
           </div>
       </div>
