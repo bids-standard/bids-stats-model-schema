@@ -383,7 +383,8 @@
           },
           "model": {
             "type": "object",
-            "required": [],
+            "additionalProperties": false,
+            "required": ["variables"],
             "properties": {
               "variables": {
                 "type": "array",
