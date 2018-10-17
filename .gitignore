@@ -1,0 +1,10 @@
+.DS_Store
+config.env
+.env
+yarn-error.log
+node_modules
+lerna-debug.log
+.eslintcache
+coverage
+datalad-key
+content
