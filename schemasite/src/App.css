@@ -1,0 +1,13 @@
+.App {
+  text-align: center;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+textarea {
+    min-height: 500px;
+    min-width: 500px;
+    resize: vertical;
+}
