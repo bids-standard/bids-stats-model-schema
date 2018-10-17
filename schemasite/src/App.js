@@ -5,8 +5,13 @@ let schema = require('./schema.json');
 
 class Valid extends Component {
   render() {
+    let display = [];
+    this.props.valid.split(',').map((x, i) => {
+      display.push(<li key={i}>{x}</li>);
+      return x;
+    });
     return (
-      <div>{'' + this.props.valid}</div>
+      <div><ul>{display}</ul></div>
     );
   }
 }
