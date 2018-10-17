@@ -1,0 +1,181 @@
+{
+  "definitions": {
+    "contrasts": {
+      "ttest": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "condition_list": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "weights": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "type": {
+            "type": "string",
+            "enum": ["T", "t", null]
+          }
+        }
+      },
+      "Ftest": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "condition_list": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "weights": {
+            "type": "array",
+            "items": {
+              "type": "array",
+                "items": {
+                  "type": "number"
+                }
+              }
+          },
+          "type": {
+            "type": "string",
+            "enum": ["F"]
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+  "required": [],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "input": {
+      "type": "object",
+      "required": [],
+      "properties": {
+        "task": {
+          "type": "string"
+        }
+      }
+    },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "level": {
+            "type": "string",
+            "enum": ["run", "session", "subject", "dataset"]
+          },
+          "transformations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "enum": [
+                    "copy", 
+                    "scale", 
+                    "orthogonalize ", 
+                    "factor", 
+                    "sum", 
+                    "product", 
+                    "mean", 
+                    "or", 
+                    "not", 
+                    "and", 
+                    "select", 
+                    "delete", 
+                    "drop_na", 
+                    "replace", 
+                    "rename", 
+                    "assign", 
+                    "formula", 
+                    "threshold", 
+                    "filter", 
+                    "split", 
+                    "to_dense", 
+                    "multiply", 
+                    "divide", 
+                    "add", 
+                    "subtract"
+                  ]
+                },
+                "input": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "output": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "wrt": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "demean": {
+                  "type": "boolean"
+                },
+                "output": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "model": {
+            "type": "object",
+            "required": [],
+            "properties": {
+              "HRF_variables": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "variables": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "contrasts": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {"$ref":  "#/definitions/contrasts/ttest"},
+                {"$ref":  "#/definitions/contrasts/Ftest"}
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
