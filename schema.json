@@ -53,6 +53,17 @@
             "enum": ["F"]
           }
         }
+      },
+      "transformations": {
+        "sum": {
+          "type": "object",
+          "required": [],
+          "properties": {
+            "input": {
+              "type": "string"
+            }
+          }
+        }
       }
     }
   },
