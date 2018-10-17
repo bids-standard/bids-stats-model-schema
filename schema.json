@@ -62,7 +62,10 @@
           "type": "string"
         }
       },
-      "output": {
+      "output_str": {
+        "type": "string"
+      },
+      "output_arr": {
         "type": "array",
         "items": {
           "type": "string"
@@ -81,9 +84,6 @@
         }
       },
       "demean": {
-        "type": "boolean"
-      },
-      "output": {
         "type": "boolean"
       },
       "target": {
@@ -174,7 +174,15 @@
         "required": ["input"],
         "properties": {
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
-          "output": {"$ref":  "#/definitions/transformationArgs/output"}
+          "output": {"$ref":  "#/definitions/transformationArgs/output_str"}
+        }
+      },
+      "drop_na": {
+        "type": "object",
+        "required": ["input"],
+        "properties": {
+          "input": {"$ref":  "#/definitions/transformationArgs/input"},
+          "output": {"$ref":  "#/definitions/transformationArgs/output_arr"}
         }
       },
       "assign": {
@@ -183,7 +191,7 @@
         "properties": {
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "target": {"$ref":  "#/definitions/transformationArgs/target"},
-          "output": {"$ref":  "#/definitions/transformationArgs/output"},
+          "output": {"$ref":  "#/definitions/transformationArgs/output_arr"},
           "input_attr": {"$ref":  "#/definitions/transformationArgs/input_attr"},
           "output_attr": {"$ref":  "#/definitions/transformationArgs/output_attr"}
         }
@@ -193,7 +201,7 @@
         "required": ["input", "output"],
         "properties": {
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
-          "output": {"$ref":  "#/definitions/transformationArgs/output"}
+          "output": {"$ref":  "#/definitions/transformationArgs/output_arr"}
         }
       },
       "demean": {
@@ -201,7 +209,7 @@
         "required": ["input"],
         "properties": {
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
-          "output": {"$ref":  "#/definitions/transformationArgs/output"}
+          "output": {"$ref":  "#/definitions/transformationArgs/output_arr"}
         }
       },
       "factor": {
@@ -219,7 +227,7 @@
         "required": ["input"],
         "properties": {
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
-          "output": {"$ref":  "#/definitions/transformationArgs/output"}
+          "output": {"$ref":  "#/definitions/transformationArgs/output_arr"}
         }
       },
       "or": {
@@ -227,7 +235,7 @@
         "required": ["input", "output"],
         "properties": {
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
-          "output": {"$ref":  "#/definitions/transformationArgs/output"}
+          "output": {"$ref":  "#/definitions/transformationArgs/output_str"}
         }
       },
       "and": {
@@ -235,7 +243,7 @@
         "required": ["input", "output"],
         "properties": {
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
-          "output": {"$ref":  "#/definitions/transformationArgs/output"}
+          "output": {"$ref":  "#/definitions/transformationArgs/output_str"}
         }
       },
       "orthogonalize": {
@@ -243,7 +251,7 @@
         "required": ["input", "wrt"],
         "properties": {
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
-          "output": {"$ref":  "#/definitions/transformationArgs/output"},
+          "output": {"$ref":  "#/definitions/transformationArgs/output_arr"},
           "wrt": {"$ref":  "#/definitions/transformationArgs/wrt"},
           "demean": {"$ref":  "#/definitions/transformationArgs/demean"}
         }
@@ -253,7 +261,7 @@
         "required": ["input", "output"],
         "properties": {
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
-          "output": {"$ref":  "#/definitions/transformationArgs/output"}
+          "output": {"$ref":  "#/definitions/transformationArgs/output_str"}
         }
       },
       "replace": {
@@ -263,7 +271,7 @@
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "replace": {"$ref":  "#/definitions/transformationArgs/replace"},
           "attribute": {"$ref":  "#/definitions/transformationArgs/attribute"},
-          "output": {"$ref":  "#/definitions/transformationArgs/output"}
+          "output": {"$ref":  "#/definitions/transformationArgs/output_arr"}
         }
       },
       "scale": {
@@ -271,7 +279,7 @@
         "required": ["input"],
         "properties": {
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
-          "output": {"$ref":  "#/definitions/transformationArgs/output"},
+          "output": {"$ref":  "#/definitions/transformationArgs/output_arr"},
           "demean": {"$ref":  "#/definitions/transformationArgs/demean"},
           "rescale": {"$ref":  "#/definitions/transformationArgs/rescale"}
         }
@@ -285,17 +293,10 @@
       },
       "select": {
         "type": "object",
-        "required": ["input"],
-        "properties": {
-          "input": {"$ref":  "#/definitions/transformationArgs/input"}
-        }
-      },
-      "select": {
-        "type": "object",
         "required": ["input", "output"],
         "properties": {
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
-          "output": {"$ref":  "#/definitions/transformationArgs/output"},
+          "output": {"$ref":  "#/definitions/transformationArgs/output_arr"},
           "weights": {"$ref":  "#/definitions/transformationArgs/weights"}
         }
       },
@@ -315,7 +316,7 @@
         "required": ["input"],
         "properties": {
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
-          "output": {"$ref":  "#/definitions/transformationArgs/output"}
+          "output": {"$ref":  "#/definitions/transformationArgs/output_arr"}
         }
       },
       "convolve_HRF": {
@@ -364,6 +365,7 @@
             "items": {
               "anyOf": [
                 {"$ref":  "#/definitions/transformations/copy"},
+                {"$ref":  "#/definitions/transformations/drop_na"},
                 {"$ref":  "#/definitions/transformations/scale"},
                 {"$ref":  "#/definitions/transformations/orthogonalize"},
                 {"$ref":  "#/definitions/transformations/factor"},

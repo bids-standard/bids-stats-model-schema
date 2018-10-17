@@ -44,6 +44,7 @@ class App extends Component {
     if (valid) {
         valid = 'Valid!';
     } else {
+        console.log(validate.errors);
         valid = 'Invalid: ' + ajv.errorsText(validate.errors);
     }
     this.setState({valid: valid});
