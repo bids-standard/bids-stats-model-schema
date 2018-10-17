@@ -385,12 +385,6 @@
             "type": "object",
             "required": [],
             "properties": {
-              "HRF_variables": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
               "variables": {
                 "type": "array",
                 "items": {
