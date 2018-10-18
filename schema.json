@@ -71,6 +71,9 @@
           "type": "string"
         }
       },
+      "output_obj": {
+        "type": "object"
+      },
       "weights": {
         "type": "array",
         "items": {
@@ -181,7 +184,7 @@
         "required": ["input"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "drop_na",
+          "name": {"type": "string", "const": "drop_na"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "output": {"$ref":  "#/definitions/transformationArgs/output_arr"}
         }
@@ -192,7 +195,7 @@
         "required": ["input", "target"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "assign",
+          "name": {"type": "string", "const": "assign"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "target": {"$ref":  "#/definitions/transformationArgs/target"},
           "target_attr": {"$ref":  "#/definitions/transformationArgs/output_attr"},
@@ -207,7 +210,7 @@
         "required": ["input", "output"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "copy",
+          "name": {"type": "string", "const": "copy"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "output": {"$ref":  "#/definitions/transformationArgs/output_arr"}
         }
@@ -218,22 +221,22 @@
         "required": ["input"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "demean",
+          "name": {"type": "string", "const": "demean"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "output": {"$ref":  "#/definitions/transformationArgs/output_arr"}
         }
       },
       "factor": {
         "type": "object",
-        "additionalProperties": false,
         "required": ["input"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "factor",
+          "name": {"type": "string", "const": "factor"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "prefix": {"$ref":  "#/definitions/transformationArgs/prefix"},
           "constraint": {"$ref":  "#/definitions/transformationArgs/constraint"},
-          "ref_level": {"$ref":  "#/definitions/transformationArgs/ref_level"}
+          "ref_level": {"$ref":  "#/definitions/transformationArgs/ref_level"},
+          "output": {"$ref":  "#/definitions/transformationArgs/output_obj"}
         }
       },
       "not": {
@@ -252,7 +255,7 @@
         "required": ["input", "output"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "or",
+          "name": {"type": "string", "const": "or"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "output": {"$ref":  "#/definitions/transformationArgs/output_str"}
         }
@@ -263,7 +266,7 @@
         "required": ["input", "output"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "and",
+          "name": {"type": "string", "const": "and"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "output": {"$ref":  "#/definitions/transformationArgs/output_str"}
         }
@@ -274,7 +277,7 @@
         "required": ["input", "wrt"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "orthogonalize",
+          "name": {"type": "string", "const": "orthogonalize"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "output": {"$ref":  "#/definitions/transformationArgs/output_arr"},
           "wrt": {"$ref":  "#/definitions/transformationArgs/wrt"},
@@ -287,7 +290,7 @@
         "required": ["input", "output"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "product",
+          "name": {"type": "string", "const": "product"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "output": {"$ref":  "#/definitions/transformationArgs/output_str"}
         }
@@ -298,7 +301,7 @@
         "required": ["input", "replace"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "replace",
+          "name": {"type": "string", "const": "replace"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "replace": {"$ref":  "#/definitions/transformationArgs/replace"},
           "attribute": {"$ref":  "#/definitions/transformationArgs/attribute"},
@@ -311,7 +314,7 @@
         "required": ["input"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "scale",
+          "name": {"type": "string", "const": "scale"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "output": {"$ref":  "#/definitions/transformationArgs/output_arr"},
           "demean": {"$ref":  "#/definitions/transformationArgs/demean"},
@@ -324,7 +327,7 @@
         "required": ["input"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "select",
+          "name": {"type": "string", "const": "select"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"}
         }
       },
@@ -334,7 +337,7 @@
         "required": ["input", "output"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "sum",
+          "name": {"type": "string", "const": "sum"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "output": {"$ref":  "#/definitions/transformationArgs/output_arr"},
           "weights": {"$ref":  "#/definitions/transformationArgs/weights"}
@@ -345,7 +348,7 @@
         "required": ["input", "output"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "threshold",
+          "name": {"type": "string", "const": "threshold"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "threshold": {"$ref":  "#/definitions/transformationArgs/threshold"},
           "binarize": {"$ref":  "#/definitions/transformationArgs/binarize"},
@@ -359,7 +362,7 @@
         "required": ["input"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "to_dense",
+          "name": {"type": "string", "const": "to_dense"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "output": {"$ref":  "#/definitions/transformationArgs/output_arr"}
         }
@@ -370,7 +373,7 @@
         "required": ["input"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "convolve_HRF",
+          "name": {"type": "string", "const": "convolve_HRF"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "model": {"$ref":  "#/definitions/transformationArgs/model"},
           "derivative": {"$ref":  "#/definitions/transformationArgs/derivative"},
@@ -383,7 +386,7 @@
         "additionalProperties": false,
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "polynomial_expansion",
+          "name": {"type": "string", "const": "polynomial_expansion"},
           "order": {"$ref":  "#/definitions/transformationArgs/order"}
         }
       },
@@ -393,9 +396,20 @@
         "required": ["input"],
         "properties": {
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "name": "split",
+          "name": {"type": "string", "const": "split"},
           "input": {"$ref":  "#/definitions/transformationArgs/input"},
           "by": {"$ref":  "#/definitions/transformationArgs/input"}
+        }
+      },
+      "copy_to_duration": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
+          "name": {"type": "string", "const": "copy_to_duration"},
+          "input": {"$ref":  "#/definitions/transformationArgs/input"},
+          "output": {"$ref":  "#/definitions/transformationArgs/output_arr"},
+          "source": {"type": "string"}
         }
       }
     }
@@ -451,6 +465,7 @@
                 {"$ref":  "#/definitions/transformations/to_dense"},
                 {"$ref":  "#/definitions/transformations/convolve_HRF"},
                 {"$ref":  "#/definitions/transformations/split"},
+                {"$ref":  "#/definitions/transformations/copy_to_duration"},
                 {"$ref":  "#/definitions/transformations/polynomial_expansion"}
               ]
             }
