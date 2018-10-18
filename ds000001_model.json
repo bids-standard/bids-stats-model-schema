@@ -1,0 +1,135 @@
+{
+  "name": "ds000001 AFNI model",
+  "input": {"task": "balloonanalogrisktask"},
+  "blocks": [
+      {
+          "level": "subject",
+          "transformations": [
+              {
+                  "name": "polynomial_expansion",
+                  "order": 2
+              },
+              {
+                  "name": "split",
+                  "input": ["poly_*", "X", "Y", "Z", "RotX", "RotY", "RotZ"],
+                  "by": ["run"]
+              },
+              {
+                  "name": "factor",
+                  "input": ["trial_type"],
+                  "output": {
+                      "pumps_demean": "pumps_fixed",
+                      "explode_demean": "explode_fixed",
+                      "control_pumps_demean": "control_pumps_fixed",
+                      "cash_demean": "cash_fixed"
+                  }
+              },
+              {
+                "_comment": "potential replacement for 'copy_to_duration'",
+                "name": "assign",
+                "input": [ "response_time", "response_time", "response_time", "response_time" ],
+                "input_attr": "value",
+                "target":  ["pumps_fixed", "explode_fixed",
+                           "control_pumps_fixed", "cash_fixed"],
+                "target_attr": "duration"
+              },
+              {
+                  "_comment": "should probably use 'assign'",
+                  "name": "copy_to_duration",
+                  "input": ["pumps_fixed", "explode_fixed",
+                             "control_pumps_fixed", "cash_fixed"],
+                  "source": "response_time",
+                  "output": ["pumps_fixed_real_RT", "explode_fixed_real_RT",
+                              "control_pumps_fixed_real_RT", "cash_fixed_real_RT"]
+              },
+              {
+                "_comment": "(Note: we should not do this but it was in the original model)",
+                "name": "orthogonalize",
+                "input": ["pumps_fixed_real_RT"],
+                "wrt": ["pumps_fixed"]
+              },
+              {
+                  "name": "orthogonalize",
+                  "input": ["explode_fixed_real_RT"],
+                  "wrt": ["explode_fixed"]
+              },
+              {
+                  "name": "orthogonalize",
+                  "input": ["control_fixed_real_RT"],
+                  "wrt": ["control_fixed"]
+              },
+              {
+                  "name": "orthogonalize",
+                  "input": ["cash_fixed_real_RT"],
+                  "wrt": ["cash_fixed"]
+              }
+          ],
+          "model": {
+              "model_type": "glm",
+              "variables": [
+                  "pumps_fixed",
+                  "pumps_demean",
+                  "pumps_fixed_real_RT",
+                  "cash_fixed",
+                  "cash_demean",
+                  "cash_fixed_real_RT",
+                  "explode_fixed",
+                  "explode_demean",
+                  "control_pumps_fixed",
+                  "control_pumps_demean",
+                  "control_pumps_fixed_real_RT",
+                  "poly_*"
+              ]
+          },
+          "contrasts": [
+            {
+             "name": "pumps_realRT_minus_ctrl_realRT",
+             "condition_list": ["pumps_realRT", "ctrl_realRT"],
+             "weights": [1, -1]
+                     },
+            {
+              "name": "ctrl_realRT_minus_pumps_realRT",
+              "condition_list": ["ctrl_realRT", "pumps_realRT"],
+              "weights": [1, -1]
+            },
+            {
+              "name": "pumps_fixed_minus_ctrl_fixed",
+              "condition_list": ["pumps_fixed", "ctrl_fixed"],
+              "weights": [1, -1]
+            },
+            {
+              "name": "ctrl_fixed_minus_pumps_fixed",
+              "condition_list": ["ctrl_fixed", "pumps_fixed"],
+              "weights": [1, -1]
+            },
+            {
+              "name": "pumps_demean_minus_ctrl_demean",
+              "condition_list": ["pumps_demean", "ctrl_demean"],
+              "weights": [1, -1]
+            },
+            {
+              "name": "ctrl_demean_minus_pumps_demean",
+              "condition_list": ["ctrl_demean", "pumps_demean"],
+              "weights": [1, -1]
+            }
+          ]
+      },
+      {
+        "level": "dataset",
+        "model": {
+          "model_type": "glm",
+          "variances": [{
+            "name": "within_subject_var",
+            "groupBy": "subject"
+          }]
+        },
+        "auto_contrasts": [
+          "ctrl_realRT_minus_pumps_realRT",
+          "pumps_fixed_minus_ctrl_fixed",
+          "ctrl_fixed_minus_pumps_fixed",
+          "pumps_demean_minus_ctrl_demean",
+          "ctrl_demean_minus_pumps_demean"
+        ]
+      }
+    ]
+}
