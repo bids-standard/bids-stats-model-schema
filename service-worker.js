@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/BidsModelSchema/precache-manifest.51beffedc3ec41ab2aba2664041b7d3a.js"
+  "/BidsModelSchema/precache-manifest.d2ddf7d9878b1c52e568116fe4f41531.js"
 );
 
 workbox.clientsClaim();
