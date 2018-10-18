@@ -1,13 +1,51 @@
 .App {
-  text-align: center;
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+  background-color:#f2f2f2;
+}
+
+.header {
+  padding: 10px 0 0 0;
+}
+
+.body {
+    height: 100%;
+    padding-left: 30px;
+    border:2px solid #fff;
+    box-shadow:0px 2px 7px #F2BBF1;
+    -moz-box-shadow: 0px 2px 7px #F2BBF1;
+    -webkit-box-shadow: 0px 2px 7px #F2BBF1;
+    border-radius:10px;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+}
+
+html, body {
+    height: 100%;
 }
 
 .App-link {
   color: #61dafb;
 }
 
+.left {
+  height: 100%;
+  width: 50%;
+  float: left;
+}
+
+.right {
+  margin-left: 50%;
+  /* Change this to whatever the width of your left column is*/
+}
+.clear {
+  clear: both;
+}
+
 textarea {
-    min-height: 500px;
-    min-width: 500px;
-    resize: vertical;
+  height: 75%;
+  width: 100%;
 }
