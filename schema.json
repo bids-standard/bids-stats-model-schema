@@ -1,4 +1,8 @@
 {
+  "title": "BIDS Stats-Models Specification (BEP002) Schema",
+  "description": "BIDS Stats-Models Specification (BEP002) is still under active development, so schema is not yet finalized",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
   "definitions": {
     "contrasts": {
       "ttest": {
