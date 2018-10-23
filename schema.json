@@ -7,7 +7,6 @@
     "contrasts": {
       "ttest": {
         "type": "object",
-        "required": [],
         "properties": {
           "name": {
             "type": "string"
@@ -32,7 +31,6 @@
       },
       "Ftest": {
         "type": "object",
-        "required": [],
         "properties": {
           "name": {
             "type": "string"
@@ -419,7 +417,6 @@
     }
   },
   "type": "object",
-  "required": [],
   "additionalProperties": false,
   "properties": {
     "name": {
@@ -430,7 +427,6 @@
     },
     "input": {
       "type": "object",
-      "required": [],
       "properties": {
         "task": {
           "type": "string"
@@ -441,7 +437,6 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [],
         "additionalProperties": false,
         "properties": {
           "level": {
@@ -477,7 +472,6 @@
           "model": {
             "type": "object",
             "additionalProperties": false,
-            "required": [],
             "properties": {
               "model_type": {"type": "string"},
               "variables": {
