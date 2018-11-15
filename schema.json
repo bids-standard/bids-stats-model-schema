@@ -155,7 +155,9 @@
       },
       "Model": {
         "type": "string",
-        "enum": ["spm", "glover", "fir"]
+        "enum": ["FSLDoubleGamma", "FSLGaussian", "FSLGamma", "FSLCustomBasisSet", "FSLGammaBasisSet",
+          "FSLSineBasisSet", "FSLFIRBasisSet", "SPMCanonica", "AFNIBLOCK", "AFNIGAM", "AFNITWOGAM",
+          "AFNISPMG1", "AFNIWAV", "AFNIMION"]
       },
       "Derivative": {
         "type": "boolean"
@@ -202,6 +204,9 @@
         "type": "object"
       },
       "SamplingRate": {
+        "type": "string"
+      },
+      "Initial": {
         "type": "string"
       },
       "Aggregate": {
@@ -319,6 +324,17 @@
           "OutputAttr": {"$ref":  "#/definitions/transformationArgs/OutputAttr"}
         }
       },
+      "Constant": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["Output"],
+        "properties": {
+          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
+          "Name": {"type": "string", "const": "Constant"},
+          "Output": {"$ref":  "#/definitions/transformationArgs/Input"},
+          "Value": {"$ref":  "#/definitions/transformationArgs/ValueFloat"}
+        }
+      },
       "Convolve": {
         "type": "object",
         "additionalProperties": false,
@@ -342,6 +358,17 @@
           "Name": {"type": "string", "const": "Copy"},
           "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
           "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
+        }
+      },
+      "Deconvolve": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["Input"],
+        "properties": {
+          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
+          "Name": {"type": "string", "const": "Deconvolve"},
+          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
+          "Model": {"$ref":  "#/definitions/transformationArgs/Model"}
         }
       },
       "Delete": {
@@ -549,7 +576,7 @@
           "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
           "Name": {"type": "string", "const": "Split"},
           "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "By": {"$ref":  "#/definitions/transformationArgs/Input"}
+          "By": {"$ref":  "#/definitions/transformationArgs/SplitBy"}
         }
       },
       "StdDev": {
@@ -650,23 +677,38 @@
             "type": "array",
             "items": {
               "anyOf": [
-                {"$ref":  "#/definitions/transformations/Copy"},
-                {"$ref":  "#/definitions/transformations/DropNa"},
-                {"$ref":  "#/definitions/transformations/Scale"},
-                {"$ref":  "#/definitions/transformations/Orthogonalize"},
-                {"$ref":  "#/definitions/transformations/Factor"},
-                {"$ref":  "#/definitions/transformations/Sum"},
-                {"$ref":  "#/definitions/transformations/Product"},
-                {"$ref":  "#/definitions/transformations/Or"},
-                {"$ref":  "#/definitions/transformations/Not"},
+                {"$ref":  "#/definitions/transformations/Add"},
                 {"$ref":  "#/definitions/transformations/And"},
-                {"$ref":  "#/definitions/transformations/Select"},
-                {"$ref":  "#/definitions/transformations/Replace"},
                 {"$ref":  "#/definitions/transformations/Assign"},
+                {"$ref":  "#/definitions/transformations/Constant"},
+                {"$ref":  "#/definitions/transformations/Convolve"},
+                {"$ref":  "#/definitions/transformations/Copy"},
+                {"$ref":  "#/definitions/transformations/Deconvolve"},
+                {"$ref":  "#/definitions/transformations/Delete"},
+                {"$ref":  "#/definitions/transformations/Derivative"},
+                {"$ref":  "#/definitions/transformations/Divide"},
+                {"$ref":  "#/definitions/transformations/DropNa"},
+                {"$ref":  "#/definitions/transformations/Factor"},
+                {"$ref":  "#/definitions/transformations/Filter"},
+                {"$ref":  "#/definitions/transformations/Image"},
+                {"$ref":  "#/definitions/transformations/Mean"},
+                {"$ref":  "#/definitions/transformations/Multiply"},
+                {"$ref":  "#/definitions/transformations/Not"},
+                {"$ref":  "#/definitions/transformations/Or"},
+                {"$ref":  "#/definitions/transformations/Orthogonalize"},
+                {"$ref":  "#/definitions/transformations/Power"},
+                {"$ref":  "#/definitions/transformations/Product"},
+                {"$ref":  "#/definitions/transformations/Rename"},
+                {"$ref":  "#/definitions/transformations/Replace"},
+                {"$ref":  "#/definitions/transformations/Scale"},
+                {"$ref":  "#/definitions/transformations/Select"},
+                {"$ref":  "#/definitions/transformations/Split"},
+                {"$ref":  "#/definitions/transformations/StdDev"},
+                {"$ref":  "#/definitions/transformations/Subtract"},
+                {"$ref":  "#/definitions/transformations/Sum"},
                 {"$ref":  "#/definitions/transformations/Threshold"},
                 {"$ref":  "#/definitions/transformations/ToDense"},
-                {"$ref":  "#/definitions/transformations/Convolve"},
-                {"$ref":  "#/definitions/transformations/Split"}
+                {"$ref":  "#/definitions/transformations/Variance"}
               ]
             }
           },
