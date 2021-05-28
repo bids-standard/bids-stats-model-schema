@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "df1a9acac6d0720be54d",
-    "url": "/BidsModelSchema/static/css/main.d7ee0169.chunk.css"
+    "revision": "77cc740796439c14bcdf",
+    "url": "/BidsModelSchema/static/css/main.1872ced6.chunk.css"
   },
   {
-    "revision": "df1a9acac6d0720be54d",
-    "url": "/BidsModelSchema/static/js/main.df1a9aca.chunk.js"
+    "revision": "77cc740796439c14bcdf",
+    "url": "/BidsModelSchema/static/js/main.77cc7407.chunk.js"
   },
   {
     "revision": "9103420721aa6038f93a",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/BidsModelSchema/static/js/runtime~main.d820706d.js"
   },
   {
-    "revision": "6f005424fd6a6e95c7957b18dd374131",
+    "revision": "2a512fb2709c6b1933334028fc618497",
     "url": "/BidsModelSchema/index.html"
   }
 ];
