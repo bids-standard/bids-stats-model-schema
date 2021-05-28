@@ -1,103 +1,11 @@
 {
   "title": "BIDS Stats-Models Specification (BEP002) Schema",
   "description": "BIDS Stats-Models Specification (BEP002) is still under active development, so schema is Not yet finalized",
-  "$schema": "http://json-schema.org/draft-04/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "definitions": {
-    "Contrasts": {
-      "ttest": {
-        "type": "object",
-        "properties": {
-          "Name": {
-            "type": "string"
-          },
-          "ConditionList": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "Weights": {
-            "type": "array",
-            "items": {
-              "type": "number"
-            }
-          },
-          "type": {
-            "Type": "string",
-            "enum": ["T", "t", null]
-          }
-        }
-      },
-      "Ftest": {
-        "type": "object",
-        "properties": {
-          "Name": {
-            "type": "string"
-          },
-          "ConditionList": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "Weights": {
-            "type": "array",
-            "items": {
-              "type": "array",
-                "items": {
-                  "type": "number"
-                }
-              }
-          },
-          "type": {
-            "Type": "string",
-            "enum": ["F"]
-          }
-        }
-      }
-    },
-    "transformationArgs": {
-      "Input": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
-      "OutputStr": {
-        "type": "string"
-      },
-      "OutputArr": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
-      "OutputObj": {
-        "type": "object"
-      },
-      "Weights": {
-        "type": "array",
-        "items": {
-          "type": "number"
-        }
-      },
-      "Wrt": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
-      "Demean": {
-        "type": "boolean"
-      },
-      "Target": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
-      "InputAttr": {
+    "DatasetInputs": {
+      "labelInputs": {
         "oneOf": [
           {
             "type": "string"
@@ -110,538 +18,21 @@
           }
         ]
       },
-      "OutputAttr": {
-        "anyOf": [
-          {
-            "type": "string"
+      "inputKeywords": {
+        "type": "object",
+        "properties": {
+          "task": {
+            "$ref":  "#/definitions/DatasetInputs/labelInputs"
           },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        ]
-      },
-      "Prefix": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
-      "RefLevel": {
-        "type": "string"
-      },
-      "Replace": {
-        "type": "object"
-      },
-      "Attribute": {
-        "type": "string"
-      },
-      "Rescale": {
-        "type": "boolean"
-      },
-      "Threshold": {
-        "type": "string"
-      },
-      "Binarize": {
-        "type": "boolean"
-      },
-      "Above": {
-        "type": "boolean"
-      },
-      "Signed": {
-        "type": "boolean"
-      },
-      "Model": {
-        "type": "string",
-        "enum": ["FSLDoubleGamma", "FSLGaussian", "FSLGamma", "FSLCustomBasisSet", "FSLGammaBasisSet",
-          "FSLSineBasisSet", "FSLFIRBasisSet", "SPMCanonica", "AFNIBLOCK", "AFNIGAM", "AFNITWOGAM",
-          "AFNISPMG1", "AFNIWAV", "AFNIMION"]
-      },
-      "Derivative": {
-        "type": "boolean"
-      },
-      "Dispersion": {
-        "type": "boolean"
-      },
-      "FirDelays": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
-      "Constraint": {
-        "type": "string",
-        "enum": ["none", "drop_one", "mean_zero"]
-      },
-      "Order": {
-        "type": "array",
-        "items": {
-          "type": "number"
-        }
-      },
-      "_comment": {
-        "type": "string"
-      },
-      "ValueFloat": {
-        "type": "string"
-      },
-      "ValueVariance": {
-        "oneOf": [
-          {
-            "type": "number"
+          "run": {
+            "$ref":  "#/definitions/DatasetInputs/labelInputs"
           },
-          {
-            "type": "string"
-          }
-        ]
-      },
-      "By": {
-        "type": "string"
-      },
-      "Mask": {
-        "type": "object"
-      },
-      "SamplingRate": {
-        "type": "string"
-      },
-      "Initial": {
-        "type": "string"
-      },
-      "Aggregate": {
-        "oneOf": [
-          {
-            "type": "boolean"
+          "subject": {
+            "$ref":  "#/definitions/DatasetInputs/labelInputs"
           },
-          {
-            "type": "string"
+          "session": {
+            "$ref":  "#/definitions/DatasetInputs/labelInputs"
           }
-        ]
-      },
-      "SplitBy": {
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        ]
-      },
-      "NestedIn": {
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        ]
-      },
-      "Query": {
-        "type": "string"
-      }
-    },
-    "transformations": {
-      "Add": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input", "Value"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Add"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"},
-          "Value": {"$ref":  "#/definitions/transformationArgs/ValueFloat"}
-        }
-      },
-      "Divide": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input", "Value"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Divide"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"},
-          "Value": {"$ref":  "#/definitions/transformationArgs/ValueFloat"}
-        }
-      },
-      "Multiply": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input", "Value"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Multiply"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"},
-          "Value": {"$ref":  "#/definitions/transformationArgs/ValueFloat"}
-        }
-      },
-      "Subtract": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input", "Value"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Subtract"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"},
-          "Value": {"$ref":  "#/definitions/transformationArgs/ValueFloat"}
-        }
-      },
-      "And": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input", "Output"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "And"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputStr"}
-        }
-      },
-      "Assign": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input", "Target"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Assign"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Target": {"$ref":  "#/definitions/transformationArgs/Target"},
-          "Target_attr": {"$ref":  "#/definitions/transformationArgs/InputAttr"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"},
-          "InputAttr": {"$ref":  "#/definitions/transformationArgs/InputAttr"},
-          "OutputAttr": {"$ref":  "#/definitions/transformationArgs/OutputAttr"}
-        }
-      },
-      "Constant": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Output"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Constant"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Value": {"$ref":  "#/definitions/transformationArgs/ValueFloat"}
-        }
-      },
-      "Convolve": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Convolve"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Model": {"$ref":  "#/definitions/transformationArgs/Model"},
-          "Derivative": {"$ref":  "#/definitions/transformationArgs/Derivative"},
-          "Dispersion": {"$ref":  "#/definitions/transformationArgs/Dispersion"},
-          "FirDelays": {"$ref":  "#/definitions/transformationArgs/FirDelays"}
-        }
-      },
-      "Copy": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input", "Output"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Copy"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
-        }
-      },
-      "Deconvolve": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Deconvolve"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Model": {"$ref":  "#/definitions/transformationArgs/Model"}
-        }
-      },
-      "Delete": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Delete"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"}
-        }
-      },
-      "Demean": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Demean"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
-        }
-      },
-      "Derivative": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Derivative"},
-          "Input": {"$ref": "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref": "#/definitions/transformationArgs/OutputArr"},
-          "Order":  {"$ref": "#/definitions/transformationArgs/Order"},
-          "Initial":  {"$ref": "#/definitions/transformationArgs/Initial"}
-        }
-      },
-      "DropNa": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "DropNa"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
-        }
-      },
-      "Factor": {
-        "type": "object",
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Factor"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Prefix": {"$ref":  "#/definitions/transformationArgs/Prefix"},
-          "Constraint": {"$ref":  "#/definitions/transformationArgs/Constraint"},
-          "RefLevel": {"$ref":  "#/definitions/transformationArgs/RefLevel"}
-        }
-      },
-      "Filter": {
-        "type": "object",
-        "required": ["Input", "Query"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Filter"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Query": {"$ref":  "#/definitions/transformationArgs/Query"},
-          "By": {"$ref":  "#/definitions/transformationArgs/By"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
-        }
-      },
-      "Image": {
-        "type": "object",
-        "required": ["Input", "Output"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Name"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Mask": {"$ref":  "#/definitions/transformationArgs/Mask"},
-          "Aggregate": {"$ref":  "#/definitions/transformationArgs/Aggregate"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
-        }
-      },
-      "Mean": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Mean"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
-        }
-      },
-      "Not": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Not"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
-        }
-      },
-      "Or": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Or"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
-        }
-      },
-      "Orthogonalize": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input", "Wrt"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Orthogonalize"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"},
-          "Wrt": {"$ref":  "#/definitions/transformationArgs/Wrt"},
-          "Demean": {"$ref":  "#/definitions/transformationArgs/Demean"}
-        }
-      },
-      "Power": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Power"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"},
-          "Order": {"$ref":  "#/definitions/transformationArgs/Order"}
-        }
-      },
-      "Product": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input", "Output"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Product"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputStr"}
-        }
-      },
-      "Rename": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input", "Output"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Product"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
-        }
-      },
-      "Replace": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input", "Replace"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Replace"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Replace": {"$ref":  "#/definitions/transformationArgs/Replace"},
-          "Attribute": {"$ref":  "#/definitions/transformationArgs/Attribute"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
-        }
-      },
-      "Scale": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Scale"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"},
-          "Demean": {"$ref":  "#/definitions/transformationArgs/Demean"},
-          "Rescale": {"$ref":  "#/definitions/transformationArgs/Rescale"}
-        }
-      },
-      "Select": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Select"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"}
-        }
-      },
-      "Split": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Split"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "By": {"$ref":  "#/definitions/transformationArgs/SplitBy"}
-        }
-      },
-      "StdDev": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "StdDev"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
-        }
-      },
-      "Sum": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input", "Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Sum"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputStr"},
-          "Weights": {"$ref":  "#/definitions/transformationArgs/Weights"}
-        }
-      },
-      "Threshold": {
-        "type": "object",
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Threshold"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "Threshold": {"$ref":  "#/definitions/transformationArgs/Threshold"},
-          "Binarize": {"$ref":  "#/definitions/transformationArgs/Binarize"},
-          "Above": {"$ref":  "#/definitions/transformationArgs/Above"},
-          "Signed": {"$ref":  "#/definitions/transformationArgs/Signed"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
-        }
-      },
-      "ToDense": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "ToDense"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "SamplingRate": {"$ref":  "#/definitions/transformationArgs/SamplingRate"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputArr"}
-        }
-      },
-      "Variance": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["Input"],
-        "properties": {
-          "_comment": {"$ref":  "#/definitions/transformationArgs/_comment"},
-          "Name": {"type": "string", "const": "Variance"},
-          "Input": {"$ref":  "#/definitions/transformationArgs/Input"},
-          "SplitBy": {"$ref":  "#/definitions/transformationArgs/SplitBy"},
-          "NestedIn": {"$ref":  "#/definitions/transformationArgs/NestedIn"},
-          "Constraint": {"$ref":  "#/definitions/transformationArgs/Constraint"},
-          "RefLevel": {"$ref":  "#/definitions/transformationArgs/RefLevel"},
-          "Value": {"$ref":  "#/definitions/transformationArgs/ValueVariance"},
-          "Output": {"$ref":  "#/definitions/transformationArgs/OutputStr"}
         }
       }
     }
@@ -649,6 +40,9 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
+    "BIDSModelVersion": {
+      "type": "string"
+    },
     "Name": {
       "type": "string"
     },
@@ -657,85 +51,57 @@
     },
     "Input": {
       "type": "object",
-      "properties": {
-        "Task": {
-          "type": "string"
-        }
-      }
+        "anyOf": [ 
+          {
+            "properties": {
+              "Include": {
+                  "$ref":  "#/definitions/DatasetInputs/inputKeywords"
+              },
+              "Exclude": {
+                "$ref":  "#/definitions/DatasetInputs/inputKeywords"
+              }
+            }
+          },
+          {"$ref":  "#/definitions/DatasetInputs/inputKeywords"}
+        ]
     },
-    "Steps": {
+    "Nodes": {
       "type": "array",
       "items": {
         "type": "object",
-        "additionalProperties": false,
         "properties": {
           "Level": {
             "type": "string",
-            "enum": ["Run", "Session", "Subject", "Dataset"]
+            "enum": ["run", "session", "subject", "dataset"]
+          },
+          "Name": {
+            "type": "string"
           },
           "Transformations": {
-            "type": "array",
-            "items": {
-              "anyOf": [
-                {"$ref":  "#/definitions/transformations/Add"},
-                {"$ref":  "#/definitions/transformations/And"},
-                {"$ref":  "#/definitions/transformations/Assign"},
-                {"$ref":  "#/definitions/transformations/Constant"},
-                {"$ref":  "#/definitions/transformations/Convolve"},
-                {"$ref":  "#/definitions/transformations/Copy"},
-                {"$ref":  "#/definitions/transformations/Deconvolve"},
-                {"$ref":  "#/definitions/transformations/Delete"},
-                {"$ref":  "#/definitions/transformations/Derivative"},
-                {"$ref":  "#/definitions/transformations/Divide"},
-                {"$ref":  "#/definitions/transformations/DropNa"},
-                {"$ref":  "#/definitions/transformations/Factor"},
-                {"$ref":  "#/definitions/transformations/Filter"},
-                {"$ref":  "#/definitions/transformations/Image"},
-                {"$ref":  "#/definitions/transformations/Mean"},
-                {"$ref":  "#/definitions/transformations/Multiply"},
-                {"$ref":  "#/definitions/transformations/Not"},
-                {"$ref":  "#/definitions/transformations/Or"},
-                {"$ref":  "#/definitions/transformations/Orthogonalize"},
-                {"$ref":  "#/definitions/transformations/Power"},
-                {"$ref":  "#/definitions/transformations/Product"},
-                {"$ref":  "#/definitions/transformations/Rename"},
-                {"$ref":  "#/definitions/transformations/Replace"},
-                {"$ref":  "#/definitions/transformations/Scale"},
-                {"$ref":  "#/definitions/transformations/Select"},
-                {"$ref":  "#/definitions/transformations/Split"},
-                {"$ref":  "#/definitions/transformations/StdDev"},
-                {"$ref":  "#/definitions/transformations/Subtract"},
-                {"$ref":  "#/definitions/transformations/Sum"},
-                {"$ref":  "#/definitions/transformations/Threshold"},
-                {"$ref":  "#/definitions/transformations/ToDense"},
-                {"$ref":  "#/definitions/transformations/Variance"}
-              ]
+            "Transformer": {"type": "string"},
+            "Instructions": {
+              "type": "array",
+              "items": {"type": "object"}
             }
           },
           "Model": {
             "type": "object",
             "additionalProperties": false,
             "properties": {
-              "ModelType": {"type": "string"},
+              "Type": {
+                "type": "string",
+                "enum": ["glm", "Meta"]
+              },
               "X": {
                 "type": "array",
                 "items": {
-                  "type": "string"
+                  "anyOf": [
+                    {"type": "string"},
+                    {"type": "number"}
+                  ]
                 }
               },
-              "Y": {
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  {
-                    "type": "string"
-                  }
-                ]
-              },
+              "Formula": {"type": "string"},
               "Options": {
                 "type": "object",
                 "additionalProperties": false,
@@ -749,6 +115,18 @@
                     "ReplaceVariables": {
                       "type": "object",
                       "additionalProperties": true
+                    },
+                    "Mask": {
+                      "type": "string"
+                    },
+                    "Aggregate": {
+                      "oneOf": [
+                        {"type": "boolean"},
+                        {
+                          "type": "string",
+                          "enum": ["none", "average", "pca"]
+                        }
+                      ]
                     }
                 }
               },
@@ -767,6 +145,12 @@
                   }
                 ]
               },
+              "ErrorDistribution": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                }
+              },
               "Software": {
                 "type": "array",
                 "items": [
@@ -778,20 +162,74 @@
               }
             }
           },
-          "AutoContrasts": {
-            "anyOf": [
-              {"$ref":  "#/definitions/transformationArgs/Input"},
-              {"type": "boolean"}
-            ]
-          },
           "Contrasts": {
             "type": "array",
             "items": {
-              "anyOf": [
-                {"$ref":  "#/definitions/Contrasts/ttest"},
-                {"$ref":  "#/definitions/Contrasts/Ftest"}
-              ]
+              "type": "object",
+              "properties": {
+                "Name": {
+                  "type": "string"
+                },
+                "ConditionList": {
+                  "type": "array",
+                  "items": { 
+                    "type": ["string", "number"]
+                  }
+                },
+                "Weights": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      { "type": ["string", "number"] },
+                      {
+                        "type": "array",
+                        "items": { 
+                          "type": ["string", "number"]
+                        }
+                      }
+                    ]
+                  }
+                },
+                "Test": {
+                  "enum": ["t", "F"]
+                }
+              }
             }
+          },
+          "DummyContrasts": {
+            "type": "object",
+            "properties": {
+              "Type": {
+                "enum": ["t", "FEMA"]
+              },
+              "Contrasts": {
+                "type": "array",
+                "items": { "type": "string" }
+              }
+            }
+          },
+          "GroupBy": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "Source": {
+            "type": "string"
+          },
+          "Destination": {
+            "type": "string"
+          },
+          "Filter": {
+            "type": "object"
           }
         }
       }
