@@ -78,10 +78,13 @@
             "type": "string"
           },
           "Transformations": {
-            "Transformer": {"type": "string"},
-            "Instructions": {
-              "type": "array",
-              "items": {"type": "object"}
+            "type": "object",
+            "properties": {
+              "Transformer": {"type": "string"},
+              "Instructions": {
+                "type": "array",
+                "items": {"type": "object"}
+              }
             }
           },
           "Model": {
@@ -120,13 +123,8 @@
                       "type": "string"
                     },
                     "Aggregate": {
-                      "oneOf": [
-                        {"type": "boolean"},
-                        {
-                          "type": "string",
-                          "enum": ["none", "average", "pca"]
-                        }
-                      ]
+                      "type": "string",
+                      "enum": ["none", "average", "pca"]
                     }
                 }
               },
@@ -191,6 +189,7 @@
                   }
                 },
                 "Test": {
+                  "type": "string",
                   "enum": ["t", "F"]
                 }
               }
@@ -200,6 +199,7 @@
             "type": "object",
             "properties": {
               "Type": {
+                "type": "string",
                 "enum": ["t", "FEMA"]
               },
               "Contrasts": {
