@@ -2,7 +2,7 @@
   "name": "schemasite",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://rwblair.github.io/BidsModelSchema",
+  "homepage": "https://bids-standard.github.io/bids-stats-model-schema",
   "dependencies": {
     "ajv": "^6.5.4",
     "react": "^16.5.2",
