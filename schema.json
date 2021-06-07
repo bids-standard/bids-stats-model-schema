@@ -50,20 +50,7 @@
       "type": "string"
     },
     "Input": {
-      "type": "object",
-        "anyOf": [ 
-          {
-            "properties": {
-              "Include": {
-                  "$ref":  "#/definitions/DatasetInputs/inputKeywords"
-              },
-              "Exclude": {
-                "$ref":  "#/definitions/DatasetInputs/inputKeywords"
-              }
-            }
-          },
-          {"$ref":  "#/definitions/DatasetInputs/inputKeywords"}
-        ]
+      "$ref":  "#/definitions/DatasetInputs/inputKeywords"
     },
     "Nodes": {
       "type": "array",
