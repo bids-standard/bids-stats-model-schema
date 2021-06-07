@@ -35,6 +35,17 @@
           }
         }
       }
+    },
+    "Variable": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "integer",
+          "enum": [1]
+        }
+      ]
     }
   },
   "type": "object",
@@ -82,8 +93,7 @@
             "properties": {
               "Transformer": {"type": "string"},
               "Instructions": {
-                "type": "array",
-                "items": {"type": "object"}
+                "type": "array"
               }
             }
           },
@@ -98,10 +108,7 @@
               "X": {
                 "type": "array",
                 "items": {
-                  "anyOf": [
-                    {"type": "string"},
-                    {"type": "number"}
-                  ]
+                  "$ref":  "#/definitions/Variable"
                 }
               },
               "Formula": {"type": "string"},
@@ -128,7 +135,7 @@
                     }
                 }
               },
-              "VarianceStructure": {
+              "VarianceComponents": {
                 "type": "array",
                 "items": [
                   {
@@ -136,10 +143,24 @@
                     "additionalProperties": false,
                     "properties": {
                       "Name": {"type": "string"},
-                      "GroupBy": {"type": "string"},
-                      "SplitBy": {"type": "string"},
-                      "GroupBy": {"type": "string"}
-                    }
+                      "Levels": {"type": "string"},
+                      "LevelsFrom": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "oneOf": [
+                      {
+                        "required": ["Levels"],
+                        "not": {"required": ["LevelsFrom"]}
+                      },
+                      {
+                        "required": ["LevelsFrom"],
+                        "not": {"required": ["Levels"]}
+                      }
+                    ]
                   }
                 ]
               },
@@ -147,6 +168,8 @@
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
+                  "Family": {"type": "string"},
+                  "Link": {"type": "string"}
                 }
               },
               "Software": {
@@ -166,12 +189,12 @@
               "type": "object",
               "properties": {
                 "Name": {
-                  "type": "string"
+                  "$ref":  "#/definitions/Variable"
                 },
                 "ConditionList": {
                   "type": "array",
-                  "items": { 
-                    "type": ["string", "number"]
+                  "items": {
+                    "$ref":  "#/definitions/Variable"
                   }
                 },
                 "Weights": {
@@ -198,13 +221,15 @@
           "DummyContrasts": {
             "type": "object",
             "properties": {
-              "Type": {
+              "Test": {
                 "type": "string",
-                "enum": ["t", "FEMA"]
+                "enum": ["t"]
               },
               "Contrasts": {
                 "type": "array",
-                "items": { "type": "string" }
+                "items": {
+                  "$ref":  "#/definitions/Variable"
+                }
               }
             }
           },
