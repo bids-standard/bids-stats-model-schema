@@ -143,7 +143,17 @@
                           "type": "string"
                         }
                       }
-                    }
+                    },
+                    "oneOf": [
+                      {
+                        "required": ["Levels"],
+                        "not": {"required": ["LevelsFrom"]}
+                      },
+                      {
+                        "required": ["LevelsFrom"],
+                        "not": {"required": ["Levels"]}
+                      }
+                    ]
                   }
                 ]
               },
