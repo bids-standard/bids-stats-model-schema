@@ -1,13 +1,13 @@
 {
-  "main.css": "/BidsModelSchema/static/css/main.1872ced6.chunk.css",
-  "main.js": "/BidsModelSchema/static/js/main.f0bd16a5.chunk.js",
-  "main.js.map": "/BidsModelSchema/static/js/main.f0bd16a5.chunk.js.map",
-  "static/js/1.91034207.chunk.js": "/BidsModelSchema/static/js/1.91034207.chunk.js",
-  "static/js/1.91034207.chunk.js.map": "/BidsModelSchema/static/js/1.91034207.chunk.js.map",
-  "runtime~main.js": "/BidsModelSchema/static/js/runtime~main.d820706d.js",
-  "runtime~main.js.map": "/BidsModelSchema/static/js/runtime~main.d820706d.js.map",
-  "static/css/main.1872ced6.chunk.css.map": "/BidsModelSchema/static/css/main.1872ced6.chunk.css.map",
-  "index.html": "/BidsModelSchema/index.html",
-  "precache-manifest.d9c3d278b9355b5fb0cb4d290b323b2b.js": "/BidsModelSchema/precache-manifest.d9c3d278b9355b5fb0cb4d290b323b2b.js",
-  "service-worker.js": "/BidsModelSchema/service-worker.js"
+  "main.css": "/bids-stats-model-schema/static/css/main.1872ced6.chunk.css",
+  "main.js": "/bids-stats-model-schema/static/js/main.2dbb45b8.chunk.js",
+  "main.js.map": "/bids-stats-model-schema/static/js/main.2dbb45b8.chunk.js.map",
+  "static/js/1.91034207.chunk.js": "/bids-stats-model-schema/static/js/1.91034207.chunk.js",
+  "static/js/1.91034207.chunk.js.map": "/bids-stats-model-schema/static/js/1.91034207.chunk.js.map",
+  "runtime~main.js": "/bids-stats-model-schema/static/js/runtime~main.e97714a7.js",
+  "runtime~main.js.map": "/bids-stats-model-schema/static/js/runtime~main.e97714a7.js.map",
+  "static/css/main.1872ced6.chunk.css.map": "/bids-stats-model-schema/static/css/main.1872ced6.chunk.css.map",
+  "index.html": "/bids-stats-model-schema/index.html",
+  "precache-manifest.6a9384b4ed60da105601675caa794c39.js": "/bids-stats-model-schema/precache-manifest.6a9384b4ed60da105601675caa794c39.js",
+  "service-worker.js": "/bids-stats-model-schema/service-worker.js"
 }
