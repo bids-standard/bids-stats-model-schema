@@ -128,7 +128,7 @@
                     }
                 }
               },
-              "VarianceStructure": {
+              "VarianceComponents": {
                 "type": "array",
                 "items": [
                   {
@@ -136,9 +136,13 @@
                     "additionalProperties": false,
                     "properties": {
                       "Name": {"type": "string"},
-                      "GroupBy": {"type": "string"},
-                      "SplitBy": {"type": "string"},
-                      "GroupBy": {"type": "string"}
+                      "Levels": {"type": "string"},
+                      "LevelsFrom": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
                     }
                   }
                 ]
@@ -147,6 +151,8 @@
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
+                  "Family": {"type": "string"},
+                  "Link": {"type": "string"}
                 }
               },
               "Software": {
