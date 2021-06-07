@@ -135,7 +135,7 @@
                     }
                 }
               },
-              "VarianceStructure": {
+              "VarianceComponents": {
                 "type": "array",
                 "items": [
                   {
@@ -143,10 +143,24 @@
                     "additionalProperties": false,
                     "properties": {
                       "Name": {"type": "string"},
-                      "GroupBy": {"type": "string"},
-                      "SplitBy": {"type": "string"},
-                      "GroupBy": {"type": "string"}
-                    }
+                      "Levels": {"type": "string"},
+                      "LevelsFrom": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "oneOf": [
+                      {
+                        "required": ["Levels"],
+                        "not": {"required": ["LevelsFrom"]}
+                      },
+                      {
+                        "required": ["LevelsFrom"],
+                        "not": {"required": ["Levels"]}
+                      }
+                    ]
                   }
                 ]
               },
@@ -154,6 +168,8 @@
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
+                  "Family": {"type": "string"},
+                  "Link": {"type": "string"}
                 }
               },
               "Software": {
