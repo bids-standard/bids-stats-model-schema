@@ -82,8 +82,7 @@
             "properties": {
               "Transformer": {"type": "string"},
               "Instructions": {
-                "type": "array",
-                "items": {"type": "object"}
+                "type": "array"
               }
             }
           },
