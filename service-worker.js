@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/bids-stats-model-schema/precache-manifest.6a9384b4ed60da105601675caa794c39.js"
+  "/bids-stats-model-schema/precache-manifest.ca33fffef6890eb9acce3105029b9751.js"
 );
 
 workbox.clientsClaim();

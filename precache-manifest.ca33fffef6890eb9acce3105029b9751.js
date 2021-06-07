@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "2dbb45b84f74bb1e862b",
-    "url": "/bids-stats-model-schema/static/css/main.1872ced6.chunk.css"
+    "revision": "93f46e7e0c68cc103988",
+    "url": "/bids-stats-model-schema/static/css/main.5fe7d26e.chunk.css"
   },
   {
-    "revision": "2dbb45b84f74bb1e862b",
-    "url": "/bids-stats-model-schema/static/js/main.2dbb45b8.chunk.js"
+    "revision": "93f46e7e0c68cc103988",
+    "url": "/bids-stats-model-schema/static/js/main.93f46e7e.chunk.js"
   },
   {
     "revision": "9103420721aa6038f93a",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/bids-stats-model-schema/static/js/runtime~main.e97714a7.js"
   },
   {
-    "revision": "c966300f76250f4b2441142430ca25c1",
+    "revision": "ee2f26652406e264ae2ca496b913a5aa",
     "url": "/bids-stats-model-schema/index.html"
   }
 ];
