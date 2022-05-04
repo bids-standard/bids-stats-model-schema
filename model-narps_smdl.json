@@ -34,10 +34,11 @@
         ]
       },
       "Model": {
-        "X": ["gain_trials", "loss_trials", "gain", "loss", "demeaned_RT", 1]
+        "X": ["gain_trials", "loss_trials", "gain", "loss", "demeaned_RT", 1],
+        "Type": "glm"
       },
       "DummyContrasts": {
-        "Conditions": ["gain", "loss"],
+        "Contrasts": ["gain", "loss"],
         "Test": "t"
       }
     },
@@ -45,7 +46,7 @@
       "Level": "Subject",
       "Name": "subject",
       "GroupBy": ["subject", "contrast"],
-      "Model": {"X": [1], "Type": "Meta"},
+      "Model": {"X": [1], "Type": "meta"},
       "DummyContrasts": {
         "Test": "t"
       }
@@ -56,7 +57,8 @@
       "GroupBy": ["contrast"],
       "Model": {
         "X": [1, "group"],
-        "Formula": "0 + C(group)"
+        "Formula": "0 + C(group)",
+        "Type": "meta"
       },
       "Contrasts": [
         {
@@ -72,7 +74,8 @@
       "Name": "positive",
       "GroupBy": ["contrast", "group"],
       "Model": {
-        "X": [1]
+        "X": [1],
+        "Type": "meta"
       },
       "Contrasts": [
         {
@@ -88,7 +91,8 @@
       "Name": "negative",
       "GroupBy": ["contrast", "group"],
       "Model": {
-        "X": [1]
+        "X": [1],
+        "Type": "meta"
       },
       "Contrasts": [
         {

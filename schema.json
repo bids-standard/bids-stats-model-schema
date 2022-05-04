@@ -49,6 +49,7 @@
     }
   },
   "additionalProperties": false,
+  "required": ["BIDSModelVersion", "Name", "Input", "Nodes"],
   "properties": {
     "BIDSModelVersion": {
       "type": "string"
@@ -66,6 +67,7 @@
       "type": "array",
       "items": {
         "type": "object",
+        "required": ["Level", "Name", "GroupBy"],
         "properties": {
           "Level": {
             "type": "string",
@@ -76,6 +78,7 @@
           },
           "Transformations": {
             "type": "object",
+            "required": ["Transformer", "Instructions"],
             "properties": {
               "Transformer": {"type": "string"},
               "Instructions": {
@@ -86,6 +89,7 @@
           "Model": {
             "type": "object",
             "additionalProperties": false,
+            "required": ["Type", "X"],
             "properties": {
               "Type": {
                 "type": "string",
@@ -139,11 +143,11 @@
                     },
                     "oneOf": [
                       {
-                        "required": ["Levels"],
+                        "required": ["Name", "Levels"],
                         "not": {"required": ["LevelsFrom"]}
                       },
                       {
-                        "required": ["LevelsFrom"],
+                        "required": ["Name", "LevelsFrom"],
                         "not": {"required": ["Levels"]}
                       }
                     ]
@@ -173,6 +177,8 @@
             "type": "array",
             "items": {
               "type": "object",
+              "required": ["Name", "ConditionList"],
+              "additionalProperties": false,
               "properties": {
                 "Name": {
                   "$ref":  "#/definitions/Variable"
@@ -206,6 +212,7 @@
           },
           "DummyContrasts": {
             "type": "object",
+            "additionalProperties": false,
             "properties": {
               "Test": {
                 "type": "string",
@@ -232,6 +239,7 @@
       "type": "array",
       "items": {
         "type": "object",
+        "required": ["Source", "Destination"],
         "properties": {
           "Source": {
             "type": "string"
