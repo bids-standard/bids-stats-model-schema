@@ -105,7 +105,7 @@
                   "Variables": {"type": "array", "items": { "type": "string" }},
                   "Model": {
                     "type": "string",
-                    "const": ["DoubleGamma", "Gamma", "FiniteImpulseResponse"]
+                    "enum": ["DoubleGamma", "Gamma", "FiniteImpulseResponse"]
                   },
                   "Parameters": {
                     "type": "object",
