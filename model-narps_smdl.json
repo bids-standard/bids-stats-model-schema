@@ -34,7 +34,13 @@
         ]
       },
       "Model": {
-        "X": ["gain_trials", "loss_trials", "gain", "loss", "demeaned_RT", 1]
+        "X": ["gain_trials", "loss_trials", "gain", "loss", "demeaned_RT", 1],
+        "Options":{
+          "Mask": {
+            "desc": "brain",
+            "suffix": "mask"
+          }
+        }
       },
       "DummyContrasts": {
         "Conditions": ["gain", "loss"],
@@ -45,7 +51,7 @@
       "Level": "Subject",
       "Name": "subject",
       "GroupBy": ["subject", "contrast"],
-      "Model": {"X": [1], "Type": "Meta"},
+      "Model": {"X": [1], "Type": "meta"},
       "DummyContrasts": {
         "Test": "t"
       }
