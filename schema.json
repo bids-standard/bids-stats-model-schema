@@ -101,6 +101,7 @@
               "HRF": {
                 "type": "object",
                 "additionalProperties": false,
+                "required": ["Variables", "Model"],
                 "properties": {
                   "Variables": {"type": "array", "items": { "type": "string" }},
                   "Model": {
