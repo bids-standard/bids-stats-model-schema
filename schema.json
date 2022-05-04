@@ -48,7 +48,6 @@
       ]
     }
   },
-  "type": "object",
   "additionalProperties": false,
   "properties": {
     "BIDSModelVersion": {
@@ -70,7 +69,7 @@
         "properties": {
           "Level": {
             "type": "string",
-            "enum": ["run", "session", "subject", "dataset"]
+            "enum": ["Run", "Session", "Subject", "Dataset"]
           },
           "Name": {
             "type": "string"
@@ -90,7 +89,7 @@
             "properties": {
               "Type": {
                 "type": "string",
-                "enum": ["glm", "Meta"]
+                "enum": ["glm", "meta"]
               },
               "X": {
                 "type": "array",
