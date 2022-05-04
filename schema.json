@@ -102,12 +102,40 @@
                 }
               },
               "Formula": {"type": "string"},
+              "HRF": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["Variables", "Model"],
+                "properties": {
+                  "Variables": {"type": "array", "items": { "type": "string" }},
+                  "Model": {
+                    "type": "string",
+                    "enum": ["DoubleGamma", "Gamma", "FiniteImpulseResponse"]
+                  },
+                  "Parameters": {
+                    "type": "object",
+                    "properties": {
+                      "PeakDelay": {"type": "string"},
+                      "PeakDispersion": {"type": "string"},
+                      "UndershootDelay": {"type": "string"},
+                      "UndershootDispersion": {"type": "string"},
+                      "PeakUndershootRatio": {"type": "string"},
+                      "Derivatives": {"type": "string"},
+                      "Delays": {"type": "array", "items": {"type": "string"}}
+                    }
+                  }
+                }
+              },
               "Options": {
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
-                    "HighPassFilterCutoffSecs": {"type": "number"},
-                    "LowPassFilterCutoffSecs": {"type": "number"},
+                    "HighPassFilterCutoffHz": {"type": "number"},
+                    "LowPassFilterCutoffHz": {"type": "number"},
+                    "Confounds": {
+                       "type": "array",
+                       "items": {"type": "string"}
+                    },
                     "ReplaceVariables": {
                       "type": "object",
                       "additionalProperties": true
