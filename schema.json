@@ -108,16 +108,13 @@
                 "properties": {
                     "HighPassFilterCutoffSecs": {"type": "number"},
                     "LowPassFilterCutoffSecs": {"type": "number"},
-                    "Confounds": {
-                       "type": "array",
-                       "items": {"type": "string"}
-                    },
                     "ReplaceVariables": {
                       "type": "object",
                       "additionalProperties": true
                     },
                     "Mask": {
-                      "type": "string"
+                      "type": "object",
+                      "additionalProperties": true
                     },
                     "Aggregate": {
                       "type": "string",

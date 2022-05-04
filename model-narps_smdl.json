@@ -35,6 +35,12 @@
       },
       "Model": {
         "X": ["gain_trials", "loss_trials", "gain", "loss", "demeaned_RT", 1],
+        "Options":{
+          "Mask": {
+            "desc": "brain",
+            "suffix": "mask"
+          }
+        },
         "Type": "glm"
       },
       "DummyContrasts": {
