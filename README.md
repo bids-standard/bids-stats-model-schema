@@ -1,4 +1,9 @@
-# bids-stats-model-schema
+
+# New stats model library that generates json schema via pydantic:
+https://github.com/bids-standard/stats-models
+
+# Deprecated
+## ~~bids-stats-model-schema~~
 
 Work in progress to make a JSON schema to validate BIDS statistical models.
 
